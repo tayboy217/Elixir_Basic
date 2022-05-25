@@ -1,4 +1,4 @@
-# Cards
+# Elixir 基礎知識の整理
 
 ## Elixir Install
 % brew install elixir
@@ -60,7 +60,8 @@ iex> tail<br>
 <p></p>
 iex> tuple = {3.14, :pie. true, "Apple"}</br>
 出力結果 -> {3.14, :pie, true, "Apple"}</br>
-iex> tuple_size(tuple) ※長さ(要素数)を調べる関数はtuple_size</br>
+iex> tuple_size(tuple)</br>
+ ※長さ(要素数)を調べる関数はtuple_size</br>
 出力結果 -> 4
 <p></p>
 iex> elem(tuple, 3)<br>
