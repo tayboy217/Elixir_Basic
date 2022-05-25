@@ -58,9 +58,9 @@ iex> tail<br>
 タプルもリストと同じく、複数の値がまとめて納められている。<br>
 要素をメモリに連続して納めることができる。<br>
 <p></p>
-iex> tuple = {3.14, :pie. true, "Apple"}</b>
-出力結果 -> {3.14, :pie, true, "Apple"}</b>
-iex> tuple_size(tuple) ※長さ(要素数)を調べる関数はtuple_size</b>
+iex> tuple = {3.14, :pie. true, "Apple"}</br>
+出力結果 -> {3.14, :pie, true, "Apple"}</br>
+iex> tuple_size(tuple) ※長さ(要素数)を調べる関数はtuple_size</br>
 出力結果 -> 4
 <p></p>
 iex> elem(tuple, 3)<br>
