@@ -12,16 +12,7 @@
 - 整数(Integers) iex> 217
 - 浮動小数(Floats) iex> 3.12
 - 真理値(Booleans) iex> true / false
-- アトム(Atom)
-  iex> :foo
-  :foo
-  iex> :foo == :bar
-  false
-
-  iex> is_atom(true)
-  true
-  iex> :true == true
-  true
+- アトム(Atom) iex> :foo
 - 文字列(Strings) iex> "Hello"
 
 
