@@ -1,21 +1,27 @@
 # Cards
 
-**TODO: Add description**
+## Elixir Install
+% brew install elixir
 
-## Installation
+## 対話モード
+- IExという対話シェルがElixirにはある
+- 対話モード開始コマンド→ iex -S mix
+- 対話モード終了コマンド→ control + c
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `cards` to your list of dependencies in `mix.exs`:
+## 基礎データ型
+- 整数(Integers) iex> 217
+- 浮動小数(Floats) iex> 3.12
+- 真理値(Booleans) iex> true / false
+- アトム(Atom)
+  iex> :foo
+  :foo
+  iex> :foo == :bar
+  false
 
-```elixir
-def deps do
-  [
-    {:cards, "~> 0.1.0"}
-  ]
-end
-```
+  iex> is_atom(true)
+  true
+  iex> :true == true
+  true
+- 文字列(Strings) iex> "Hello"
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/cards>.
 
