@@ -148,3 +148,18 @@ iex> a<br>
 ・<br>
 ・<br>
 ・<br>
+
+## 日付と時間(Date n Time)
+Calenderモジュールは、日付の操作に利用する暦法を表現する<br>
+
+## case
+caseはendで閉じ、その中の条件に応じた処理をいくつも書き換えることができる<br>
+条件に合うかどうか決めるのは、パターンマッチング<br>
+残るすべての場合を引き受けるには_を用いる<br>
+<p></p>
+iex> case {:ok, "hello world"} do<br>
+...>   {:ok, result} -> result<br>
+...>   {:error, error} -> error<br>
+...>   _ -> "others"<br>
+...> end<br>
+出力結果 ->  "hello world"

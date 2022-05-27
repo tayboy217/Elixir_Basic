@@ -1,5 +1,7 @@
 defmodule Cards do
-
+@moduledoc """
+ Provides methods for creating and handing a deck of cards
+"""
   def create_deck do #method
     values = ["Ace", "Two", "Three", "Four", "Five"] #line
     suits = ["Spades", "Clibs", "Hearts", "Diamonds"]
@@ -31,10 +33,16 @@ defmodule Cards do
 
   def load(filrname) do
     case File.read(filrname) do
+      #atom
       {:ok, binary }-> :erlang.binary_to_term binary
       {:error, _reason} -> "That file dose not exit"
-      #:error n string are Alomst same but the difference bt atom n string is string-> user can see the message atom -> just a message if the user faile :error
     end
+  end
+
+  def create_hand(hand_size) do
+    Cards .create_deck #pipe operater
+    |> Cards.shuffle
+    |> Cards.deal(hand_size)
   end
 end
 
