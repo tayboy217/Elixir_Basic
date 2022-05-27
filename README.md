@@ -69,3 +69,82 @@ iex> elem(tuple, 3)<br>
 出力結果 -> "Apple"
 
 ## キーワードリスト
+キーワードリストは最初の要素がアトムのタプルからなる特別なリストで、リストと同様の性能<br>
+キーワードリストは関数にオプションを渡すために非常に良く用いられる<br>
+理由は以下の通り<br>
+・キーはアトム
+・キーは順序付けされている
+・キーの一意性は保証されない
+<p></p>
+iex> [foo: "bar", hello: "world"]<br>
+出力結果 -> [foo: "bar", hello: "world"]
+<p></p>
+iex> [{:foo, "bar"}, {:hello, "world"}]<br>
+出力結果 -> [foo: "bar", hello: "world"]
+
+## マップ
+マップはキーと値のペアコレクション<br>
+マップは %{} 構文で定義することができる<br>
+%{key => value, key => value}
+
+<p></p>
+iex> status = %{"AL" => "Alabama","WI" => "Wisconsin"}(文字列)<br>
+出力結果 -> %{"AL" => "Alabama", "WI" => "Wisconsin"}
+<p></p>
+iex> respones = %{ {:error, :enoent } => :fatal, { :error, :busy } => :retry } （タプル)<br>
+出力結果 -> %{{:error, :busy} => :retry, {:error, :enoent} => :fatal}
+
+<p></p>
+iex> colors = %{:red => 0xff0000, :green => 0x00ff00, :blue => 0x0000ff} (アトム)<br>
+出力結果 -> %{blue: 255, green: 65280, red: 16711680}
+
+## パターンマッチング
+左辺の値と右辺の値を同じにする方法を探す<br>
+変数それぞれに対応する値をセットすれば、両辺を同じにできる<br>
+この処理をパターンマッチングと呼ぶ<br>
+
+### マッチ演算子
+Elixirにおける呼び名はマッチ演算子<br>
+左の値が右の値と合致(マッチ)するかを試し、マッチすればその値が返され、しないときはエラーになる<br>
+<p></p>
+iex> x = 2<br>
+2<br>
+iex> x = 2<br>
+2<br>
+
+### ピン演算子
+演算子の左が変数の場合、右の値が代入される<br>
+だが、左の変数にピン演算子(^)を備えると、右とのマッチが求められる<br>
+<p></p>
+iex> x = 1<br>
+1<br>
+iex> x = 2<br>
+2<br>
+iex> ^x = 1<br>
+** (MatchError) no match of right hand side value: 1<br>
+iex> ^x = 2<br>
+2<br>
+
+### 演算子によるパターンマッチング
+複数のデータを持つリストややプルにも、マッチ演算子が使える<br>
+『リスト』<br>
+iex> list = [1, 2, 3]<br>
+出力結果 -> [1, 2, 3]<br>
+iex> [1, 2, 3] = list<br>
+出力結果 -> [1, 2, 3]<br>
+<p></p>
+iex> [a, b, c] = list<br>
+出力結果 -> [1, 2, 3]<br>
+iex> a<br>
+1<br>
+・<br>
+・<br>
+・<br>
+『タプル』<br>
+iex> {a, b, c} = {:hello, "world", 2018}<br>
+出力結果 -> {:hello, "world", 2018}<br>
+iex> a<br>
+:hello<br>
+・<br>
+・<br>
+・<br>
