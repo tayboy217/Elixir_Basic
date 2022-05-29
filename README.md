@@ -152,6 +152,73 @@ iex> a<br>
 ## 日付と時間(Date n Time)
 Calenderモジュールは、日付の操作に利用する暦法を表現する<br>
 
+## 変数のスコープ
+Elixirはレキシカルスコープ {静的スコープ（static scope）}<br>
+
+### Doブロックスコープ
+複数の式をグループ化する最も一般的な方法<br>
+<p></p>
+line_no = 50<br>
+・・・・<br>
+if (line_no == 50) do<br>
+    IO.puts "new.page\f"<br>
+    line_no = 0<br>
+end<br>
+Io.puts line_no<br>
+
+## 無名関数(Anonymous Function)
+無名関数はfnキーワードを使って作られる<br>
+<p></p>
+fn<br>
+  parameter-list -> body<br>
+  parameter-list -> body<br>
+end<br>
+<p></p>
+iex> sum = fn(a, b) -> a + b end<br>
+#Function<41.3316493/2 in :erl_eval.expr/6><br>
+iex)> sum(1, 2)<br>
+3<br>
+<p></p>
+iex> greet = fn -> IO.puts "Hello" end<br>
+#Function<43.3316493/0 in :erl_eval.expr/6><br>
+iex> greet.()<br>
+Hello<br>
+:ok<br>
+iex> f1 = fn a, b -> a * b end<br>
+#Function<41.3316493/2 in :erl_eval.expr/6><br>
+iex> f1.(5, 6)<br>
+30<br>
+iex> f2 = fn -> 99 end<br>
+#Function<43.3316493/0 in :erl_eval.expr/6><br>
+iex> f2.()<br>
+99<br>
+
+### 関数とパターンマッチ
+iex> sum = fn a, b, c -> a + b + c end<br>
+#Function<40.3316493/3 in :erl_eval.expr/6><br>
+ex(13)> sum.(1, 2, 3)<br>
+6<br>
+<p></p>
+iex> list_concat = fn [:a, :b], [:c, :d] -> [:a , :b, :c, :d] end<br>
+#Function<41.3316493/2 in :erl_eval.expr/6><br>
+iex> list_concat.([:a, :b], [:c, :d])<br>
+[:a, :b, :c, :d]<br>
+<p></p>
+iex> pair_tuple_to_list = fn [1234, 5678] -> [1234, 5678] end<br>
+#Function<42.3316493/1 in :erl_eval.expr/6><br>
+iex(17)> pair_tuple_to_list.([1234, 5678])<br>
+[1234, 5678]<br>
+
+## if, unless/else
+他のプログラミング言語で親しまれているif~elseは、Elixirでは以下のように記述する<br>
+<p></p>
+iex> if true do<br>
+...>   "みえる"<br>
+...> else<br>
+...>   "みえない"<br>
+...> end<br>
+"みえる"<br>
+
 ## case
 caseはendで閉じ、その中の条件に応じた処理をいくつも書き換えることができる<br>
 条件に合うかどうか決めるのは、パターンマッチング<br>
@@ -163,3 +230,36 @@ iex> case {:ok, "hello world"} do<br>
 ...>   _ -> "others"<br>
 ...> end<br>
 出力結果 ->  "hello world"
+<p></p>
+iex> case {1, 2, 3} do<br>
+...>   {4, 5, 6} -><br>
+...>     "この条件にはマッチしない"<br>
+...>   {1, x, 3} -><br>
+...>     "この条件にマッチして、この文のスコープ変数xに2が代入される"<br>
+...>   _ -><br>
+...>     "_ はどの条件にもマッチする"<br>
+...> end<br>
+"この条件にマッチして、この文のスコープ変数xに2が代入される"<br>
+<p></p>
+case文は幾つかの値の中でマッチするのもを探しだすのに便利
+
+## cond
+幾つかの条件の中で最初にマッチするものを探し出したい場合はcond<br>
+<p></p>
+iex> cond do<br>
+...>   2 + 2 == 5 -><br>
+...>     "ちがう"<br>
+...>   2 * 2 == 3 -><br>
+...>     "これもちがう"<br>
+...>   1 + 1 == 2 -><br>
+...>     "これだ！"<br>
+...> end<br>
+"これだ！"<br>
+<p></p>
+最後までマッチされなかった時はエラーになる。<br>
+<p></p>
+iex> cond do<br>
+...> 1 + 2 == 2 -><br>
+...> "wow"<br>
+...> end<br>
+** (CondClauseError) no cond clause evaluated to a true value<br>
